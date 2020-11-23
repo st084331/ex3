@@ -33,12 +33,18 @@ k2 = (sum(k)*2)/(3*len(k))
 Groups = []
 for k3 in k:
     if(k3 <= k1):
-        Groups.append(1)
-    if(k3 >= k2):
-        Groups.append(3)
+        Groups.append('олдов')
+    elif(k3 >= k2):
+        Groups.append('зумеров')
     else:
-        Groups.append(2)
+        Groups.append('бумеров')
 j=0
 for state in States:
-    print(state, '---', Groups[j])
+    print(state, 'штат', Groups[j])
+    if(Groups[j] == 'зумеров'):
+        print('В штате', state, 'низкий уровень угрозы Covid')
+    elif(Groups[j] == 'бумеров'):
+        print('В штате', state, 'средний уровень угрозы Covid')
+    else:
+        print('В штате', state, 'высокий уровень угрозы Covid')
     j += 1
