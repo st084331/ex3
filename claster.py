@@ -1,4 +1,5 @@
 import csv
+import statistics
 
 Covid_death = []
 Death = []
@@ -30,6 +31,8 @@ for i in range(len(Deaths)):
 k1 = sum(k)/(3*len(k))
 k2 = (sum(k)*2)/(3*len(k))
 
+q = statistics.median(Deaths)
+
 Groups = []
 for k3 in k:
     if(k3 <= k1):
@@ -42,9 +45,15 @@ j=0
 for state in States:
     print(state, 'штат', Groups[j])
     if(Groups[j] == 'зумеров'):
-        print('В штате', state, 'низкий уровень угрозы Covid')
+        if (Deaths[j] > q):
+            print('В штате', state, 'средний уровень угрозы Covid')
+        else:
+            print('В штате', state, 'низкий уровень угрозы Covid')
     elif(Groups[j] == 'бумеров'):
-        print('В штате', state, 'средний уровень угрозы Covid')
+        if (Deaths[j] > q):
+            print('В штате', state, 'высокий уровень угрозы Covid')
+        else:
+            print('В штате', state, 'средний уровень угрозы Covid')
     else:
-        print('В штате', state, 'высокий уровень угрозы Covid')
+            print('В штате', state, 'высокий уровень угрозы Covid')
     j += 1
